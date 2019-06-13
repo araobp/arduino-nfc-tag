@@ -2,25 +2,12 @@
 
 <img src="./doc/shield.jpg" width=400>
 
-Let's make an interactive digital photo frame with dynamic NFC tag!
-
-## Motivation
-
-My PC has been broken, and it will take a few weeks to get my PC repaired.
-
-I use this time to make an interactive digital photo frame based on RasPi and Arduino.
-
-## Note
-
-This is a remake of [another project that have used ST25DV04K with STM32](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/NFC).
-
 ## Parts
 
 - RasPi 3
 - Arduino UNO
 - [ANT7-T-ST25DV04K (dynamic NFC tag)](https://www.st.com/en/evaluation-tools/ant7-t-st25dv04k.html)
-- Capacitor sensors "TTP223-BA6" (5 pieces)
-- LEDs (5 pieces)
+- Capacitor sensor "TTP223-BA6"
 
 ## Schematic of Dynamic NFC tag Arduino shield
 
