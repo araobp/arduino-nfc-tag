@@ -16,11 +16,15 @@ This is a remake of [another project that have used ST25DV04K with STM32](https:
 
 ## Parts
 
-- RasPi
+- RasPi 3
 - Arduino UNO
-- ST25DV04K dynamic NFC tag
-- Capacitor sensor
-- LEDs
+- [ANT7-T-ST25DV04K (dynamic NFC tag)](https://www.st.com/en/evaluation-tools/ant7-t-st25dv04k.html)
+- Capacitor sensors "TTP223-BA6" (5 pieces)
+- LEDs (5 pieces)
+
+## Schematic of Dynamic NFC tag Arduino shield
+
+==> [schematic](./kicad)
 
 ## Test code
 
