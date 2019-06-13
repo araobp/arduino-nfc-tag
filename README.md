@@ -10,8 +10,7 @@ I use this time to make an interactive digital photo frame based on RasPi and Ar
 
 ## Note
 
-This is a remake of [another project that have used ST25DV04K with STM32](https:
-//github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/NFC).
+This is a remake of [another project that have used ST25DV04K with STM32](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/NFC).
 
 ## Parts
 
