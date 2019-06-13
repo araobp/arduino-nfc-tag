@@ -21,7 +21,7 @@ This is a remake of [another project that have used ST25DV04K with STM32](https:
 - Capacitor sensor
 - LEDs
 
-##
+## Test code
 
 [Test code](./arduino/)
 
@@ -41,9 +41,7 @@ NDEF URI field:
 github.com/araobp/pic16f1-mcu/bl
 ob/master/BLINKERS.md
 ```
-
-
-### NDEF format for URI(HTTPS)
+## NDEF format for URI(HTTPS)
 
 ```
 +---------------+
