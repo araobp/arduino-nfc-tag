@@ -1,5 +1,7 @@
 # Arduino with dynamic NFC tag
 
+<img src="./doc/shield.jpg" width=400>
+
 Let's make an interactive digital photo frame with dynamic NFC tag!
 
 ## Motivation
