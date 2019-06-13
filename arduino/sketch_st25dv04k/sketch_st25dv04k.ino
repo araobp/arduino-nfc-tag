@@ -1,4 +1,4 @@
-#include <Wire.h>
+ #include <Wire.h>
 
 // SO8 package of ST25DV04K
 #define SO8
@@ -7,6 +7,9 @@
 int LED_GREEN = 5;
 int LED_BLUE = 4;
 int LED_RED = 2;
+
+// Capacitance sensor
+int CAP_SEN0 = 8;
 
 // GPO (General Purpose Output) of ST25DV04K
 int GPO = 12;
@@ -33,7 +36,8 @@ tag_state state;
 // Variables for setup() and loop()
 int idx = 0;
 bool hasInput = false;
-int last_gpo_event;
+unsigned long last_gpo_event;
+unsigned long last_touched;
 char c;
 
 /*---- Basic functions ---------------------------*/
@@ -217,14 +221,31 @@ void startup_message(void) {
   dump_NDEF_payload_uri_field();  
 }
 
+bool timer_expired(unsigned long last_time, unsigned long timer) {
+  
+  unsigned long current_time = millis();
+  bool expired = false;
+  
+  if (current_time >= last_time) {
+    if ((current_time - last_time) > timer) {
+      expired = true;
+    }
+  } else {  // Rollover (millis() max value is 0xffffffff)
+    if ((0xffffffff - last_time + current_time) > timer) {
+      expired = true;
+    }
+  }
+  return expired;
+}  
 
 /*------ Main routine ---------------------------*/
 
 void setup() {
   
-  pinMode( LED_GREEN, OUTPUT );  // GREEN
-  pinMode( LED_BLUE, OUTPUT );  // BLUE
-  pinMode( LED_RED, OUTPUT );  // RED
+  pinMode(LED_GREEN, OUTPUT);  // GREEN
+  pinMode(LED_BLUE, OUTPUT);  // BLUE
+  pinMode(LED_RED, OUTPUT);  // RED
+  pinMode(CAP_SEN0, INPUT);  // Capacitance sensor
   pinMode(GPO, INPUT);  // GPO
 
   Wire.begin();  // I2C bus
@@ -242,6 +263,8 @@ void setup() {
   manage_rf(DISABLE);
   state = PHASE0;
 
+  last_touched = millis();
+  
   // Begin serial communcation 
   Serial.begin( 9600 );
 
@@ -278,9 +301,36 @@ void loop() {
   }
 
   if (hasInput) {
-    write_URL(input_buf);
+    if (input_buf[0] == '.') {
+      switch (input_buf[1]) {
+        case '0':
+          Serial.println("LED0");
+          break;
+        case '1':
+          Serial.println("LED1");
+          break;
+        case '2':
+          Serial.println("LED2");
+          break;
+        case '3':
+          Serial.println("LED3");
+          break;
+        case '4':
+          Serial.println("LED4");
+          break;
+        default:
+          break;
+      }
+    } else {
+      write_URL(input_buf);
+    }
     idx = 0;
     hasInput = false;
+  }
+
+  if (digitalRead(CAP_SEN0) == HIGH && timer_expired(last_touched, 1000UL)) {  // 1sec
+    Serial.println("CAP_SEN_TOUCHED");
+    last_touched = millis();
   }
 
   switch(state) {
@@ -309,20 +359,10 @@ void loop() {
       break;
       
     case PHASE2:  // in service
-      timer = millis();
-      
-      if (timer > last_gpo_event) {
-        if ((timer - last_gpo_event) > 5000) {
-          manage_rf(DISABLE);
-          state = PHASE0;
-          Serial.println("PHASE0");
-        } 
-      } else {
-        if ((0xffff - last_gpo_event + timer) > 5000) {
-          manage_rf(DISABLE);
-          state = PHASE0;
-          Serial.println("PHASE0");
-        }
+      if (timer_expired(last_gpo_event, 5000UL)) {  // 5sec
+        manage_rf(DISABLE);
+        state = PHASE0;
+        Serial.println("PHASE0");      
       }
       break;
   }
