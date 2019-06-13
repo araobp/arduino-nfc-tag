@@ -1,4 +1,4 @@
-# arduino-nfc-tag
+# Arduino with dynamic NFC tag
 
 Let's make an interactive digital photo frame with dynamic NFC tag!
 
