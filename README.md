@@ -7,17 +7,32 @@
 - RasPi 3
 - Arduino UNO
 - [ANT7-T-ST25DV04K (dynamic NFC tag)](https://www.st.com/en/evaluation-tools/ant7-t-st25dv04k.html)
-- Capacitor sensor "TTP223-BA6"
 
 ## Schematic of Dynamic NFC tag Arduino shield
 
+This is a schematic of Arduino shield with ANT7-T-ST25DV04K. Its pin assignment is same as that of STMicro's expansion board "X-NUCLEO-NFC04A1".
+
 ==> [schematic](./kicad)
 
-## Test code
+## Sample app: "Digital photo frame with dynamic NFC tag"
 
-[Test code](./arduino/)
+==> [webapp.js](./webapp)
 
-When I hold my smart phone over the tag, it opens the URL with Chrome browser automatically!
+[Step 0] Connect the device (Arduino with the shield) to RasPi with an USB cable.
+
+[Step 1] Start webapp.js
+
+```
+$ node webapp.js
+```
+
+[Step 2] Access "http://localhost:18080" with Chrome browser on RasPi to start the digial photo frame.
+
+## Explanation on NDEF
+
+### NDEF records on ST25DV04K' EEPROM
+
+The following is an example of a record in Area 1 on the EEPROM embedded in ST25DV04K:
 
 ```
 ST25 system config: 88 3 1 0 C 7 0 E C F 0 0 0 0 7 0 0 0 0 0 7F 0 3 24 AF F 62 2 0 24 2 E0 
@@ -33,7 +48,8 @@ NDEF URI field:
 github.com/araobp/pic16f1-mcu/bl
 ob/master/BLINKERS.md
 ```
-## NDEF format for URI(HTTPS)
+
+### NDEF format for URI(HTTPS)
 
 ```
 +---------------+
