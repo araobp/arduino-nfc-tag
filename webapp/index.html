@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>Display</title>
+    <link href="css/display.css" rel="stylesheet" type="text/css">
+    <script src="https://jp.vuejs.org/js/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+</html>
+
+<body>
+
+  <div id="app">
+    <img id="image" v-bind:src="src">
+  </div>
+
+  <script>
+  let app = new Vue({
+    el: '#app',
+    data: {
+      src: ''
+    }
+  });
+
+  app.src = './images?num=0';
+
+  const INTERVAL = 8 * 1000;
+
+  const host = window.location.hostname;
+  const url_base = 'http://' + host + ':18080/images?num=';
+
+  let num = 0;
+
+  function showImage() {
+
+    // Note: the following GET operation uses image data in a browser's cache
+    // from the second time.
+    app.src = './images?num=' + num; 
+
+    // This POST operation is to synchronize with the web app server on
+    // the image number.
+    axios.post(url_base + num);
+
+    if (++num > 4) {
+      num = 0;
+    }
+  }
+
+  setInterval(showImage, INTERVAL);
+  </script>
+
+</body>
+
+</html>
+
+

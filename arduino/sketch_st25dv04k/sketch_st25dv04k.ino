@@ -8,8 +8,12 @@ int LED_GREEN = 5;
 int LED_BLUE = 4;
 int LED_RED = 2;
 
+//#define CAP_SEN
+
+#ifdef CAP_SEN
 // Capacitance sensor
 int CAP_SEN0 = 8;
+#endif
 
 // GPO (General Purpose Output) of ST25DV04K
 int GPO = 12;
@@ -245,7 +249,9 @@ void setup() {
   pinMode(LED_GREEN, OUTPUT);  // GREEN
   pinMode(LED_BLUE, OUTPUT);  // BLUE
   pinMode(LED_RED, OUTPUT);  // RED
+#ifdef CAP_SEN
   pinMode(CAP_SEN0, INPUT);  // Capacitance sensor
+#endif
   pinMode(GPO, INPUT);  // GPO
 
   Wire.begin();  // I2C bus
@@ -327,11 +333,13 @@ void loop() {
     idx = 0;
     hasInput = false;
   }
-
+  
+#ifdef CAP_SEN
   if (digitalRead(CAP_SEN0) == HIGH && timer_expired(last_touched, 1000UL)) {  // 1sec
     Serial.println("CAP_SEN_TOUCHED");
     last_touched = millis();
   }
+#endif
 
   switch(state) {
 
