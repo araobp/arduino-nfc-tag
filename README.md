@@ -14,6 +14,8 @@ This is a schematic of Arduino shield with ANT7-T-ST25DV04K. Its pin assignment 
 
 ==> [schematic](./kicad)
 
+Note: the shield is powered by 3V3 pin on Arduino UNO. Although Arduino UNO is a 5V system, the circuit works.
+
 ## Sample app: "Digital photo frame with dynamic NFC tag"
 
 ==> [webapp.js](./webapp)
