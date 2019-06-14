@@ -18,6 +18,13 @@ Note: the shield is powered by 3V3 pin on Arduino UNO. Although Arduino UNO is a
 
 ## Sample app: "Digital photo frame with dynamic NFC tag"
 
+Architecture
+
+```
+   [Chrome]----socket----[webapp.js]----USB----[Arduino]
+   
+```
+
 ==> [webapp.js](./webapp)
 
 [Step 0] Connect the device (Arduino with the shield) to RasPi with an USB cable.
