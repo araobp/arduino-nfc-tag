@@ -28,6 +28,8 @@ $ node webapp.js
 
 [Step 2] Access "http://localhost:18080" with Chrome browser on RasPi to start the digial photo frame.
 
+[Step 3] Hold a NFC-capable smart phone over the NFC tag. It should start a browser automatically to show a Wikipedia URL with the image.
+
 ## Explanation on NDEF
 
 ### NDEF records on ST25DV04K' EEPROM
