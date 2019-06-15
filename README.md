@@ -18,6 +18,8 @@ Note: the shield is powered by 3V3 pin on Arduino UNO. Although Arduino UNO is a
 
 ### Attaching the nfc tag module to the shield
 
+The module's RF pin (GPO) plays an important role in this project to avoid EEPROM wearing. Arduino can sense that a smart phone is in its proximity by checking voltage of GPO.
+
 I have come up with the following method: connect a pin socket to RF pin of the module with a wire.
 
 <img src="./doc/ant7-t-st25dv04k_1.jpg" width=200>
