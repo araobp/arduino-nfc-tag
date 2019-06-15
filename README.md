@@ -14,6 +14,8 @@ This is a schematic of Arduino shield with ANT7-T-ST25DV04K. Its pin assignment 
 
 ==> [schematic](./kicad)
 
+Note: the shield is powered by 3V3 pin on Arduino UNO. Although Arduino UNO is a 5V system, the circuit works.
+
 ### Attaching the nfc tag module to the shield
 
 I have come up with the following method: connect a pin socket to RF pin of the module with a wire.
@@ -23,6 +25,13 @@ I have come up with the following method: connect a pin socket to RF pin of the 
 <img src="./doc/ant7-t-st25dv04k_2.jpg" width=100>
 
 ## Sample app: "Digital photo frame with dynamic NFC tag"
+
+Architecture
+
+```
+   [Chrome]----socket----[webapp.js]----USB----[Arduino]
+   
+```
 
 ==> [webapp.js](./webapp)
 
