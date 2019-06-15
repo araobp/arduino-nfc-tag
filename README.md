@@ -14,6 +14,14 @@ This is a schematic of Arduino shield with ANT7-T-ST25DV04K. Its pin assignment 
 
 ==> [schematic](./kicad)
 
+### Attaching the nfc tag module to the shield
+
+I have come up with the following method: connect a pin socket to RF pin of the module with a wire.
+
+<img src="./doc/ant7-t-st25dv04k_1.jpg" width=100>
+
+<img src="./doc/ant7-t-st25dv04k_2.jpg" width=100>
+
 ## Sample app: "Digital photo frame with dynamic NFC tag"
 
 ==> [webapp.js](./webapp)
